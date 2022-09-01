@@ -1,5 +1,3 @@
-from cgi import print_arguments
-
 
 class Node:
     def __init__(self, data):
