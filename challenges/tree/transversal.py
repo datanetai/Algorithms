@@ -3,6 +3,8 @@ from BST.BST import Node
 # recursive solution
 # Time complexity O(n)
 # Space complexity O(n)
+
+           
 def inorderTraversal(root: Node) -> list[int]:
     if root == None:
         return []
@@ -96,16 +98,23 @@ def postorderTraversal2(root: Node) ->list[int]:
             stack.append(root.right)
     return res[::-1]
 # test
-root = Node(1)
-root.left = Node(2)
-root.right = Node(3)
-root.left.left = Node(4)
-root.left.right = Node(5)
+root = Node(5)
+root.left = Node(3)
+root.right = Node(7)
+root.left.left = Node(2)
+root.left.right = Node(4)
 root.right.left = Node(6)
-root.right.right = Node(7)
+root.right.right = Node(8)
+        #      5
+        #    /   \
+        #   3     7
+        #  / \   / \
+        # 2   4 6   8
+
 res = inorderTraversal2(root)
-print(res) # [4, 2, 5, 1, 6, 3, 7]
-res = preorderTraversal2(root) # [1, 2, 4, 5, 3, 6, 7]
+print(res) # [2, 3, 4, 5, 6, 7, 8]
+
+res = preorderTraversal2(root) # [5, 3, 2, 4, 7, 6, 8]
 print(res)
-res = postorderTraversal2(root) # [4, 5, 2, 6, 7, 3, 1]
+res = postorderTraversal2(root) # [2, 4, 3, 6, 8, 7, 5]
 print(res)

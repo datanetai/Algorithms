@@ -73,4 +73,3 @@ tree.left.left = Node(1)
 tree.left.right = Node(3)
 print(searchBST(tree, 2)) # 2
 print(insertIntoBST(tree, 5)) # 4 2 1 3 5 7
-    
