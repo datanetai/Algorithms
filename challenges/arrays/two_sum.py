@@ -54,7 +54,47 @@ def twoSum3( nums, target):
             return [buffer[nums[i]],i]
         else:
             buffer[target-nums[i]]=i
-            S
-                       
+
+# TWO SUM 2
+# SORTED ARRAY
+# Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+
+# Two pointers: O(n) time and O(1) space
+def twoSum4(numbers: list[int], target: int) -> list[int]:
+    i = 0
+    j = len(numbers) - 1
+    while i < j:
+        if numbers[i] + numbers[j] == target:
+            return [i+1,j+1]
+        elif numbers[i] + numbers[j] < target:
+            i += 1
+        else:
+            j -= 1
+    return [-1,-1]
+
+# Binary search: O(nlogn) time and O(1) space
+def twoSum5(numbers: list[int], target: int) -> list[int]:
+    def binarySearch(numbers: list[int], target: int, start: int) -> int:
+        i = start
+        j = len(numbers) - 1
+        while i <= j:
+            mid = i + (j-i)//2
+            if numbers[mid] == target:
+                return mid
+            elif numbers[mid] < target:
+                i = mid + 1
+            else:
+                j = mid - 1
+        return -1
+
+    for i in range(len(numbers)):
+        j = binarySearch(numbers, target - numbers[i], i+1)
+        if j != -1:
+            return [i+1,j+1]
+    return [-1,-1]
+    
+# test
+nums = [2,7,11,15]
+target = 9                       
 
 print(twoSum2(nums,target))
