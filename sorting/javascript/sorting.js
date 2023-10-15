@@ -138,6 +138,8 @@ function mergeSort2(A, p, r) {
         mergeSort2(A, q + 1, r);
         merge2(A, p, q, r);
     }
+
+    return A;
 }
 
 
