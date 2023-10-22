@@ -1,15 +1,25 @@
 public class SortingAlgorithms {
     public static void main(String[] args) {
+        System.out.println("bubble sort");
         int[] arr = { 5, 4, 3, 2, 1 };
         bubbleSort(arr);
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+            System.out.print(arr[i]);
         }
+        System.out.println("insertion sort");
         // insertionSort
         int[] arr2 = { 5, 4, 3, 2, 1 };
         insertionSort(arr2);
         for (int i = 0; i < arr2.length; i++) {
-            System.out.println(arr2[i]);
+            System.out.print(arr2[i]);
+        }
+        System.out.println("merge sort");
+
+        // mergeSort
+        int[] arr3 = { 5, 4, 3, 2, 1 };
+        arr3 = mergeSort(arr3);
+        for (int i = 0; i < arr3.length; i++) {
+            System.out.print(arr3[i]);
         }
     }
 
@@ -68,4 +78,49 @@ public class SortingAlgorithms {
         }
         return arr;
     }
+
+    public static int[] merge(int[] left_arr, int[] right_array) {
+        int left_index = 0;
+        int right_index = 0;
+        int[] result = new int[left_arr.length + right_array.length];
+        while (left_index < left_arr.length && right_index < right_array.length) {
+            if (left_arr[left_index] < right_array[right_index]) {
+                result[left_index + right_index] = left_arr[left_index];
+                left_index++;
+            } else {
+                result[left_index + right_index] = right_array[right_index];
+                right_index++;
+            }
+        }
+        while (left_index < left_arr.length) {
+            result[left_index + right_index] = left_arr[left_index];
+            left_index++;
+        }
+        while (right_index < right_array.length) {
+            result[left_index + right_index] = right_array[right_index];
+            right_index++;
+        }
+        return result;
+    }
+
+    public static int[] mergeSort(int[] arr) {
+        if (arr.length <= 1) {
+            return arr;
+        }
+        int mid = arr.length / 2;
+        int[] left_arr = new int[mid];
+        int[] right_arr = new int[arr.length - mid];
+        for (int i = 0; i < mid; i++) {
+            left_arr[i] = arr[i];
+        }
+        for (int i = mid; i < arr.length; i++) {
+            right_arr[i - mid] = arr[i];
+        }
+        left_arr = mergeSort(left_arr);
+        right_arr = mergeSort(right_arr);
+
+        return merge(left_arr, right_arr);
+
+    }
+
 }
