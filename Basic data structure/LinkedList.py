@@ -12,6 +12,7 @@ class LinkedList:
         if self.head is None:
             self.head = new_node
             return
+        
         cur = self.head
         while cur.next:
             cur = cur.next
