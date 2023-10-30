@@ -10,7 +10,7 @@ type LinkedList struct {
 	head *Node
 }
 
-func (l *LinkedList) search(key int) *Node {
+func (l *LinkedList) Search(key int) *Node {
 	x := l.head
 	for x != nil && x.data != key {
 		x = x.next
@@ -18,14 +18,14 @@ func (l *LinkedList) search(key int) *Node {
 	return x
 }
 
-func (l *LinkedList) insert(key int) {
+func (l *LinkedList) Insert(key int) {
 	x := new(Node)
 	x.data = key
 	x.next = l.head
 	l.head = x
 }
 
-func (l *LinkedList) insertEnd(key int) {
+func (l *LinkedList) InsertEnd(key int) {
 	x := new(Node)
 	x.data = key
 	if l.head == nil {
@@ -39,13 +39,13 @@ func (l *LinkedList) insertEnd(key int) {
 	y.next = x
 }
 
-func (l *LinkedList) delete(key int) {
+func (l *LinkedList) Delete(key int) {
 	head := l.head
 	if head == nil {
 		return
 	}
 	if head.data == key {
-		head = head.next
+		l.head = head.next
 		return
 	}
 	x := head
@@ -58,7 +58,7 @@ func (l *LinkedList) delete(key int) {
 	x.next = x.next.next
 }
 
-func (l *LinkedList) print() {
+func (l *LinkedList) Print() {
 	x := l.head
 	for x != nil {
 		print(x.data, " ")
@@ -133,40 +133,4 @@ func (l *DoublyLinkedList) print() {
 		x = x.next
 	}
 	println()
-}
-
-func main() {
-	l := new(LinkedList)
-	l.insert(1)
-	l.insert(2)
-	l.insert(3)
-	l.insert(4)
-	l.insert(5)
-	l.print()
-	l.insertEnd(6)
-	l.print()
-	l.delete(6)
-	l.print()
-	l.delete(1)
-	l.print()
-	l.delete(3)
-	l.print()
-	{
-		println("Doubly linked list")
-		dl := new(DoublyLinkedList)
-		dl.insert(1)
-		dl.insert(2)
-		dl.insert(3)
-		dl.insert(4)
-		dl.insert(5)
-		dl.print()
-		dl.insertEnd(6)
-		dl.print()
-		dl.delete(6)
-		dl.print()
-		dl.delete(1)
-		dl.print()
-		dl.delete(3)
-		dl.print()
-	}
 }
