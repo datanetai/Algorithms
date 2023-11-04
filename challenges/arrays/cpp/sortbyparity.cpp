@@ -19,7 +19,7 @@ public:
         return nums;
     }
 };
-// solution 2
+// solution 2 two pointers
 vector<int> sortArrayByParity2(vector<int> &nums)
 {
     int start = 0, end = nums.size();
@@ -42,6 +42,20 @@ vector<int> sortArrayByParity2(vector<int> &nums)
     }
 }
 
+// solution 3 snowball approach
+vector<int> sortArrayByParity3(vector<int> &nums)
+{
+    int snowballSize = 0;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (nums[i] % 2 == 0)
+        {
+            swap(nums[i], nums[snowballSize]);
+            snowballSize++;
+        }
+    }
+    return nums;
+}
 
 int main()
 {
