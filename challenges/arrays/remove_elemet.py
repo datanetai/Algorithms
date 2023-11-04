@@ -30,6 +30,7 @@ def removeElement2( nums, val):
         for i in range(len(nums)):
             if nums[i]!=val:
                 nums[count]=nums[i]
+                count+=1
         return count
 l = [3,2,2,3]
 print(removeElement(l,3))
