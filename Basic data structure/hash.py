@@ -1,6 +1,7 @@
 def hash(k,j):
     return (k+j) % 10
 
+
 def hash_insert(T,k):
     m=10
     j=0

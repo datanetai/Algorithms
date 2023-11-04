@@ -7,6 +7,7 @@ def replaceElements(arr: list[int]) -> list[int]:
     arr[-1] = -1
     return arr
 
+
 # test
 arr = [17,18,5,4,6,1]
 print(replaceElements(arr)) # [18,6,6,6,1,-1]

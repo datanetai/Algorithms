@@ -17,7 +17,7 @@ def intersect( nums1: list[int], nums2: list[int]) -> list[int]:
             j += 1
     return result
 
-# solution 2 complexty O(n + m) Space O(min(n,m))
+# solution 2 complexty O(n + m) Space O(n) for n > m in worst case
 def intersect2( nums1: list[int], nums2: list[int]) -> list[int]:
     counts = {}
     res = []

@@ -102,17 +102,19 @@ class DoublyLinkedList{
         }
         return null;
     }
-    void insert(int key){
-        DNode node = DNode(key);
-        node.next = this.head;
-        if(this.head != null){
-            this.head!.prev = node;
-        }
-        this.head = node;
+   void insert(int key){
+    DNode node = DNode(key);
+    node.next = this.head;
+    if(this.head != null){
+        this.head!.prev = node;
+    } else {
+        this.tail = node;  // Add this line
     }
+    this.head = node;
+}
     void insertEnd(int key){
         DNode node = DNode(key);
-        if(this.head == null){
+        if(this.head == null && this.tail == null){
             this.head = node;
             this.tail = node;
             return;
@@ -150,6 +152,7 @@ class DoublyLinkedList{
             print("Key not found");
             return;
         }
+        
         temp!.next = temp.next!.next;
         if(temp.next != null){
             temp.next!.prev = temp;
