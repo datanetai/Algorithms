@@ -61,36 +61,57 @@
 func numIslands(grid [][]byte) int {
 	var numIslands int
 
-	// Iterate over the grid
 	for i := range grid {
 		for j := range grid[i] {
-			// If the current cell is '1', increment the counter and call a helper function
 			if grid[i][j] == '1' {
 				numIslands++
-				bfs(grid, i, j)
+				dfs(grid, i, j)
 			}
 		}
 	}
 	return numIslands
 }
-func bfs(grid [][]byte, i, j int) {
-	queue := list.New()
-	queue.PushBack([]int{i, j})
 
-	for queue.Len() > 0 {
-		cell := queue.Remove(queue.Front()).([]int)
-		x, y := cell[0], cell[1]
+// dfs performs a depth-first search on the grid starting from the cell at (i, j).
+// It uses an explicit stack to avoid stack overflow.
+func dfs(grid [][]byte, i, j int) {
+	// Initialize the stack with the starting cell.
+	stack := [][]int{{i, j}}
 
-		if x < 0 || x >= len(grid) || y < 0 || y >= len(grid[0]) || grid[x][y] == '0' {
-			continue
+	// Continue until the stack is empty.
+	for len(stack) > 0 {
+		// Pop a cell from the stack.
+		s := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		x, y := s[0], s[1]
+
+		// Check the cell above the current cell.
+		if x-1 >= 0 && grid[x-1][y] == '1' {
+			// If it's '1', push it into the stack and mark it as visited.
+			stack = append(stack, []int{x - 1, y})
+			grid[x-1][y] = '0'
 		}
 
-		grid[x][y] = '0'
+		// Check the cell below the current cell.
+		if x+1 < len(grid) && grid[x+1][y] == '1' {
+			// If it's '1', push it into the stack and mark it as visited.
+			stack = append(stack, []int{x + 1, y})
+			grid[x+1][y] = '0'
+		}
 
-		queue.PushBack([]int{x - 1, y})
-		queue.PushBack([]int{x + 1, y})
-		queue.PushBack([]int{x, y - 1})
-		queue.PushBack([]int{x, y + 1})
+		// Check the cell to the left of the current cell.
+		if y-1 >= 0 && grid[x][y-1] == '1' {
+			// If it's '1', push it into the stack and mark it as visited.
+			stack = append(stack, []int{x, y - 1})
+			grid[x][y-1] = '0'
+		}
+
+		// Check the cell to the right of the current cell.
+		if y+1 < len(grid[0]) && grid[x][y+1] == '1' {
+			// If it's '1', push it into the stack and mark it as visited.
+			stack = append(stack, []int{x, y + 1})
+			grid[x][y+1] = '0'
+		}
 	}
 }
 
