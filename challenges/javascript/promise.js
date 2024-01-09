@@ -40,3 +40,14 @@ var addTwoPromises = async function (promise1, promise2) {
     let values = await Promise.all([promise1, promise2]);
     return values.reduce((a, b) => a + b, 0);
 };
+
+// sleeping for mills
+
+/**
+ * @param {number} millis
+ * @return {Promise}
+ */
+async function sleep(millis) {
+    return new Promise(resolve => setTimeout(resolve, millis));
+}
+
