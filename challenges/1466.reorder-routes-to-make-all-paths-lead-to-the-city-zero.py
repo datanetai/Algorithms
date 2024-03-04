@@ -69,9 +69,27 @@
 #
 
 # @lc code=start
+from collections import defaultdict
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
         count = 0
-       
+        graph = defaultdict(list)
+        for u, v in connections:
+            # u -> v
+            graph[u].append((v, 1))
+            graph[v].append((u, 0))
+        visited = set()
+        def dfs(node):
+            nonlocal count
+            visited.add(node)
+            for nei, direction in graph[node]:
+                if nei not in visited:
+                    count += direction
+                    dfs(nei)
+
+        dfs(0)
+        return count
+
+
 # @lc code=end
 
