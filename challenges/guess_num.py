@@ -40,17 +40,33 @@
 #          otherwise return 0
 # def guess(num: int) -> int:
 
+
+# 1. Define the Search Space:
+# Our search space is the range of possible numbers, from 1 to n (inclusive).
+# Therefore, we initialize l = 1 and r = n.
+# 2. Binary Search Loop:
+# We use a while (l < r) loop since we want to exit when we have narrowed down to a single element (the picked number).
+# Inside the loop:
+# Calculate the middle element: m = l + (r - l) / 2 (avoiding potential overflow).
+# Call the guess(m) API to get a hint.
+# Analyze the result:
+# If guess(m) == 0, we found the picked number! Return m.
+# If guess(m) == 1, the picked number is higher, so we need to search in the right half. Update l = m + 1.
+# If guess(m) == -1, the picked number is lower, so search in the left half. Update r = m.
+# 3. Post Processing:
+# After the loop, we are left with a single element (l or r, they are equal).
+# This element is the picked number, so return l (or r).
+
 class Solution:
     def guessNumber(self, n: int) -> int:
-        left = 0
-        right = n
-        while (left <= right):
-            mid = left + (right-left)//2
-            if (guess(mid) == 0):
-                return mid
-            elif (guess(mid) == -1):
-                right = mid - 1
-            else:  
-                left = mid + 1
-
-        return -1     
+        l, r = 1, n
+        while l < r:
+            m = l + (r - l) // 2
+            res = guess(m)
+            if res == 0:
+                return m
+            elif res == 1:
+                l = m + 1
+            else:
+                r = m
+        return l  # or r, they are equal
