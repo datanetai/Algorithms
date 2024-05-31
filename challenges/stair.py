@@ -32,11 +32,40 @@
 # 2 <= cost.length <= 1000
 # 0 <= cost[i] <= 999
 
-# Dynamic programming problems can be done in multiple steps.
-# Step1: Find recurrence relation
-# Step2: Recursive solution
-# Step3: Memoization
-# Step4: Tabulation
+# Solving Dynamic Programming (DP) Problems: A Step-by-Step Guide
+
+# DP is a powerful technique for solving problems that involve overlapping subproblems. 
+# It works by breaking down a complex problem into smaller, more manageable subproblems, 
+# storing their solutions, and reusing them to avoid redundant calculations. Here's a typical workflow:
+
+# Step 1: Find Recurrence Relation 
+# - Analyze the problem to identify the relationship between the optimal solution of the 
+#   original problem and the optimal solutions of its smaller subproblems.
+# - Express this relationship as a recursive equation or function, where the solution to 
+#   the problem depends on solutions to smaller instances of the same problem. 
+
+# Step 2: Recursive Solution (Naive Approach)
+# - Implement the recurrence relation directly as a recursive function.
+# - This provides a clear, straightforward way to express the problem's structure.
+# - However, it often leads to exponential time complexity due to repeated calculations 
+#   of the same subproblems.
+
+# Step 3: Memoization (Top-Down Optimization)
+# - Introduce a cache (e.g., dictionary, array) to store the results of calculated subproblems.
+# - Before recursively computing a subproblem's solution, check if it's already in the cache.
+# - If found, return the cached result; otherwise, compute it recursively and store it in the cache.
+# - This drastically improves performance by eliminating redundant calculations, usually resulting 
+#   in a polynomial time complexity.
+
+# Step 4: Tabulation (Bottom-Up Optimization)
+# - Instead of recursion, use an iterative approach.
+# - Create a table (e.g., array) to store the solutions to subproblems.
+# - Solve subproblems in a bottom-up manner, starting with the smallest and gradually building up 
+#   to the solution for the original problem.
+# - This approach typically has similar time complexity to memoization but can sometimes 
+#   offer better space efficiency.
+
+
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         def min_cost_recursive(cost, i):
